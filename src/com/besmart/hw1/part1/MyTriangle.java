@@ -52,5 +52,28 @@ public class MyTriangle {
         else if ((compare(v12, v13) == 0)|| (compare(v12, v23) == 0) || (compare(v13, v23) == 0)) return TriangleType.Isosceles;
         else return TriangleType.Scalene;
     }
+    
+    @Override
+    public int hashCode() {
+        int result = 17;
 
+        result = 31*result + v1.hashCode();
+        result = 31*result + v2.hashCode();
+        result = 31*result + v3.hashCode();
+
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+
+        if (obj == null || this.getClass() != obj.getClass()) return false;
+
+        MyTriangle triangle = (MyTriangle) obj;
+
+        return this.v1.equals(triangle.v1)
+                && this.v2.equals(triangle.v2)
+                && this.v3.equals(triangle.v3);
+    }
 }
