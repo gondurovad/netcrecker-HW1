@@ -65,4 +65,42 @@ public class Book {
             authorsName+= auth.getName()+" ";
         return authorsName;
     }
+    
+    @Override
+    public int hashCode() {
+        int result = 17;
+        long tmp = Double.doubleToLongBits(price);
+
+        result = 31*result + name.hashCode();
+        result = 31*result + (int)(tmp ^ (tmp >>> 32));
+        result = 31*result + qty;
+
+        for (Author author: authors)
+            result = 31*result + author.hashCode();
+
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+
+        if (obj == null || this.getClass() != obj.getClass()) return false;
+
+        Book book = (Book)obj;
+
+        if (authors.length != book.authors.length) return false;
+
+        //считаем, что порядок сооавторов не важен
+        int count = 0;
+        for (int i=0; i<authors.length; i++)
+            for (int j=0; j<authors.length; j++)
+                if ((authors[i].equals(book.authors[j]))) count++;
+        if (count!=authors.length) return false;
+
+        //считаем, что регистр в названии не важен
+        return this.name.equalsIgnoreCase(book.name)
+                && this.price==book.price
+                && this.qty==book.qty;
+    }
 }
