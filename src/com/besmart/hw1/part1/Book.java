@@ -100,7 +100,7 @@ public class Book {
 
         //считаем, что регистр в названии не важен
         return this.name.equalsIgnoreCase(book.name)
-                && this.price==book.price
+                && Double.compare(this.price,book.price)==0
                 && this.qty==book.qty;
     }
 }
