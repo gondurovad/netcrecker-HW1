@@ -50,15 +50,15 @@ public class MyComplex {
     }
 
     public boolean isImaginary() {
-        return real==0 & imag!=0;
+        return real==0 && imag!=0;
     }
 
     public boolean equals(double real, double imag) {
-        return (compare(this.real, real)==0) & (compare(this.imag, imag)==0);
+        return (compare(this.real, real)==0) && (compare(this.imag, imag)==0);
     }
 
     public boolean equals(MyComplex another) {
-        return (compare(this.real, another.getReal())==0) & (compare(this.imag, another.getImag())==0);
+        return (compare(this.real, another.getReal())==0) && (compare(this.imag, another.getImag())==0);
     }
 
     public double magnitude() {
@@ -66,7 +66,7 @@ public class MyComplex {
     }
 
     public double argument() {
-        if (real==0 & imag==0)
+        if (real==0 && imag==0)
             throw new IllegalArgumentException("argument of z=0 is undefined");
         return Math.atan2(imag, real);
     }
