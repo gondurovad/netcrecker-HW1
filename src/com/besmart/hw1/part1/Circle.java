@@ -42,4 +42,27 @@ public class Circle {
     public double calculateArea() {
         return Math.PI*pow(radius, 2);
     }
+    
+    @Override
+    public int hashCode() {
+        int result = 17;
+        long tmp = Double.doubleToLongBits(radius);
+
+        result = 31*result + (int)(tmp ^ (tmp >>> 32));
+        result = 31*result + color.hashCode();
+
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+
+        if (obj == null || this.getClass() != obj.getClass()) return false;
+
+        Circle circle = (Circle)obj;
+
+        return this.color.equals(circle.getColor())
+                && Double.compare(this.radius, circle.getRadius())==0;
+    }
 }
