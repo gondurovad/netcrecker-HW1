@@ -119,4 +119,28 @@ public class MyComplex {
     public MyComplex conjugate() {
         return new MyComplex(real, -imag);
     }
+    
+    @Override
+    public int hashCode() {
+        int result = 17;
+        long tmp = Double.doubleToLongBits(real);
+        long tmp2 = Double.doubleToLongBits(imag);
+
+        result = 31*result + (int)(tmp ^ (tmp >>> 32));
+        result = 31*result + (int)(tmp2 ^ (tmp2 >>> 32));
+
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+
+        if (obj == null || this.getClass() != obj.getClass()) return false;
+
+        MyComplex complex = (MyComplex) obj;
+
+        return Double.compare(this.real, complex.getReal())==0
+                && Double.compare(this.imag, complex.getImag())==0;
+    }
 }
